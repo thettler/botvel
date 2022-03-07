@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Database\Factories;
+namespace Thettler\Botvel\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Thettler\Botvel\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class BotvelCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'botvel';
 
     public $description = 'My command';
 
