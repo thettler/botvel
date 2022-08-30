@@ -5,7 +5,6 @@ namespace Thettler\Botvel\Factories;
 use Illuminate\Support\Arr;
 use Thettler\Botvel\Botvel;
 use Thettler\Botvel\BotvelCommand;
-use Thettler\Botvel\BotvelInput;
 use Thettler\Botvel\BotvelInputCollection;
 use Thettler\Botvel\CommandMetaCollection;
 use Thettler\Botvel\Contracts\Driver\BotvelDriver;
@@ -27,12 +26,14 @@ class BotvelCommandFactory
     public function key(string $key): BotvelCommandFactory
     {
         $this->key = $key;
+
         return $this;
     }
 
     public function name(string $name): BotvelCommandFactory
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -43,6 +44,7 @@ class BotvelCommandFactory
     public function description(string $description): BotvelCommandFactory
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -53,6 +55,7 @@ class BotvelCommandFactory
     public function handler(string $handler): BotvelCommandFactory
     {
         $this->handler = $handler;
+
         return $this;
     }
 
@@ -64,7 +67,7 @@ class BotvelCommandFactory
     {
         $inputFactories = Arr::wrap($inputFactories(new BotvelInputFactory()));
         $this->inputs = new BotvelInputCollection(
-            array_map(fn(BotvelInputFactory $factory) => $factory->create(), $inputFactories)
+            array_map(fn (BotvelInputFactory $factory) => $factory->create(), $inputFactories)
         );
 
         return $this;
@@ -79,21 +82,21 @@ class BotvelCommandFactory
         $driver = $botvel->driverFor($key);
 
         $this->meta->put($key, $data($driver->commandConfig()));
+
         return $this;
     }
 
     public function create(): BotvelCommand
     {
-
-        if (!$this->key){
+        if (! $this->key) {
             throw new BotvelException('A command needs to have a unique key! You can add it by calling the ->key() method on the Factory.');
         }
 
-        if (!$this->name){
+        if (! $this->name) {
             throw new BotvelException('A command needs to have a name! You can add it by calling the ->name() method on the Factory.');
         }
 
-        if (!$this->handler){
+        if (! $this->handler) {
             throw new BotvelException('A command needs to have a handler! You can add it by calling the ->handler() method on the Factory.');
         }
 

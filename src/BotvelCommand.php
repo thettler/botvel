@@ -2,8 +2,6 @@
 
 namespace Thettler\Botvel;
 
-use Illuminate\Support\Facades\Hash;
-
 class BotvelCommand
 {
     public readonly string $hash;
@@ -26,7 +24,7 @@ class BotvelCommand
             'key' => $this->key,
             'name' => $this->name,
             'description' => $this->description,
-            'inputs' => $this->inputs->map(fn(BotvelInput $input) => $input->inputConfig())
+            'inputs' => $this->inputs->map(fn (BotvelInput $input) => $input->inputConfig()),
         ];
     }
 

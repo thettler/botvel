@@ -11,6 +11,6 @@ class BotvelCommandCollection extends Collection
 {
     public function keyExist(string $key): bool
     {
-        return !!$this->first(fn(BotvelCommand $command) => $command->key === $key);
+        return ! ! $this->first(fn (BotvelCommand $command) => $command->key === $key);
     }
 }

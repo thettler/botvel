@@ -30,7 +30,7 @@ it('can create a command with input', function () {
         ->key('unique-key')
         ->description('Description')
         ->handler('Handler')
-        ->inputs(fn(BotvelInputFactory $input) => $input->name('input1'));
+        ->inputs(fn (BotvelInputFactory $input) => $input->name('input1'));
 
     expect($factory->create()->inputs)
         ->toBeInstanceOf(\Thettler\Botvel\BotvelInputCollection::class)
@@ -46,14 +46,14 @@ it('can create a command with inputs', function () {
         ->key('unique-key')
         ->description('Description')
         ->handler('Handler')
-        ->inputs(fn(BotvelInputFactory $input) => [$input->name('input1'), $input->name('input2')]);
+        ->inputs(fn (BotvelInputFactory $input) => [$input->name('input1'), $input->name('input2')]);
 
     expect($factory->create()->inputs)
         ->toBeInstanceOf(\Thettler\Botvel\BotvelInputCollection::class)
         ->toHaveCount(2)
         ->sequence(
-            fn(\Pest\Expectation $input)=> $input->toHaveProperty('name', 'input1'),
-            fn(\Pest\Expectation $input)=> $input->toHaveProperty('name', 'input2')
+            fn (\Pest\Expectation $input) => $input->toHaveProperty('name', 'input1'),
+            fn (\Pest\Expectation $input) => $input->toHaveProperty('name', 'input2')
         );
 });
 
@@ -100,9 +100,9 @@ it('can create a command with driver specific data', function () {
         ->name('test')
         ->handler('estt')
         ->driver(
-        NullDriver::key(),
-        fn(NullCommandConfig $config) =>  expect($config)->toBeInstanceOf(NullCommandConfig::class)->value
-    );
+            NullDriver::key(),
+            fn (NullCommandConfig $config) => expect($config)->toBeInstanceOf(NullCommandConfig::class)->value
+        );
 
     expect($factory->create()->meta->get(NullDriver::key()))
         ->toBeInstanceOf(NullCommandConfig::class);

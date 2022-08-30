@@ -2,7 +2,6 @@
 
 namespace Thettler\Botvel\Factories;
 
-use Thettler\Botvel\BotvelCommand;
 use Thettler\Botvel\BotvelInput;
 use Thettler\Botvel\Contracts\InputTypeInterface;
 use Thettler\Botvel\Enums\InputType;
@@ -47,6 +46,7 @@ class BotvelInputFactory
     {
         $self = clone $this;
         $self->$name = $value;
+
         return $self;
     }
 

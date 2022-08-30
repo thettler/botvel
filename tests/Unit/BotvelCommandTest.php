@@ -27,7 +27,7 @@ it('changes hash if input changes', function () {
     $command = $factory
         ->key('unique-key')
         ->name('Test')
-        ->inputs(fn(\Thettler\Botvel\Factories\BotvelInputFactory $factory)=> $factory->name('Input'))
+        ->inputs(fn (\Thettler\Botvel\Factories\BotvelInputFactory $factory) => $factory->name('Input'))
         ->description('Description')
         ->handler('Handler')
         ->create();
@@ -35,7 +35,7 @@ it('changes hash if input changes', function () {
     $sameCommand = $factory
         ->key('unique-key')
         ->name('Test')
-        ->inputs(fn(\Thettler\Botvel\Factories\BotvelInputFactory $factory)=> $factory->name('Changed Input'))
+        ->inputs(fn (\Thettler\Botvel\Factories\BotvelInputFactory $factory) => $factory->name('Changed Input'))
         ->description('Description')
         ->handler('Handler')
         ->create();

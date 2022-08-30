@@ -4,7 +4,6 @@ namespace Thettler\Botvel;
 
 class BotvelRegistrar
 {
-
     public function __construct(protected Botvel $botvel)
     {
     }

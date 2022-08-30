@@ -26,9 +26,11 @@ class BotvelServiceProvider extends PackageServiceProvider
 
     public function packageRegistered()
     {
-        $this->app->singleton(Botvel::class, fn(Application $app) => new Botvel());
-        $this->app->singleton(BotvelRegistrar::class,
-            fn(Application $app) => new BotvelRegistrar($app->make(Botvel::class)));
-        $this->app->bind(BotvelCommandFactory::class, fn() => new BotvelCommandFactory());
+        $this->app->singleton(Botvel::class, fn (Application $app) => new Botvel());
+        $this->app->singleton(
+            BotvelRegistrar::class,
+            fn (Application $app) => new BotvelRegistrar($app->make(Botvel::class))
+        );
+        $this->app->bind(BotvelCommandFactory::class, fn () => new BotvelCommandFactory());
     }
 }

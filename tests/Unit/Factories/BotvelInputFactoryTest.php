@@ -1,6 +1,5 @@
 <?php
 
-use Thettler\Botvel\Factories\BotvelInputFactory;
 
 it('can create a basic input from factory', function () {
     $factory = new \Thettler\Botvel\Factories\BotvelInputFactory();
@@ -18,4 +17,3 @@ it('can create a basic input from factory', function () {
         ->toHaveProperty('isRequired', true)
         ->toHaveProperty('choices', []);
 });
-

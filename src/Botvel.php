@@ -10,7 +10,6 @@ use Thettler\Botvel\Factories\BotvelCommandFactory;
 
 class Botvel
 {
-
     public function __construct(
         protected BotvelCommandCollection $registeredCommands = new BotvelCommandCollection()
     ) {
@@ -45,12 +44,13 @@ class Botvel
         }
 
         $this->registeredCommands->push($factory->create());
+
         return $this;
     }
 
     public function driverFor(string $key): BotvelDriver
     {
-        if (!config()->has("botvel.drivers.{$key}.driver")) {
+        if (! config()->has("botvel.drivers.{$key}.driver")) {
             throw new BotvelException('Driver for key "'.$key.'" does not exist.');
         }
 

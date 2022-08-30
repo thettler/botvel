@@ -9,5 +9,4 @@ use Illuminate\Support\Collection;
  */
 class BotvelInputCollection extends Collection
 {
-
 }

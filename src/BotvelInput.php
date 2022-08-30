@@ -2,7 +2,6 @@
 
 namespace Thettler\Botvel;
 
-use Thettler\Botvel\Contracts\InputTypeInterface;
 use Thettler\Botvel\Enums\InputType;
 
 class BotvelInput

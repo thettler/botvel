@@ -6,5 +6,4 @@ use Thettler\Botvel\Contracts\Driver\DriverCommandConfigInterface;
 
 class NullCommandConfig implements DriverCommandConfigInterface
 {
-
 }

@@ -7,7 +7,6 @@ use Thettler\Botvel\Contracts\Driver\DriverCommandConfigInterface;
 
 class NullDriver implements BotvelDriver
 {
-
     public static function key(): string
     {
         return 'null';
