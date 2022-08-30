@@ -1,5 +1,11 @@
 <?php
 // config for Thettler/Botvel
-return [
+use Thettler\Botvel\Drivers\NullDriver\NullDriver;
 
+return [
+    'drivers' => [
+        NullDriver::key() => [
+            'driver' => NullDriver::class,
+        ]
+    ],
 ];
