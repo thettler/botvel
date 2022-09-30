@@ -1,8 +1,8 @@
-# Create Chatbots, Chat commands and more with Laravel 
+# This is my package botvel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/thettler/botvel.svg?style=flat-square)](https://packagist.org/packages/thettler/botvel)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/thettler/botvel/run-tests?label=tests)](https://github.com/thettler/botvel/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/thettler/botvel/Check%20&%20fix%20styling?label=code%20style)](https://github.com/thettler/botvel/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/thettler/botvel/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/thettler/botvel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/thettler/botvel.svg?style=flat-square)](https://packagist.org/packages/thettler/botvel)
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
@@ -68,7 +68,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 

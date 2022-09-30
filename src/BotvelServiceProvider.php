@@ -2,11 +2,9 @@
 
 namespace Thettler\Botvel;
 
-use Illuminate\Foundation\Application;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Thettler\Botvel\Commands\BotvelCommand;
-use Thettler\Botvel\Factories\BotvelCommandFactory;
 
 class BotvelServiceProvider extends PackageServiceProvider
 {
@@ -20,15 +18,8 @@ class BotvelServiceProvider extends PackageServiceProvider
         $package
             ->name('botvel')
             ->hasConfigFile()
-            ->hasMigration('create_botvel_table');
-//            ->hasCommand(BotvelCommand::class);
-    }
-
-    public function packageRegistered()
-    {
-        $this->app->singleton(Botvel::class, fn(Application $app) => new Botvel());
-        $this->app->singleton(BotvelRegistrar::class,
-            fn(Application $app) => new BotvelRegistrar($app->make(Botvel::class)));
-        $this->app->bind(BotvelCommandFactory::class, fn() => new BotvelCommandFactory());
+            ->hasViews()
+            ->hasMigration('create_botvel_table')
+            ->hasCommand(BotvelCommand::class);
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "thettler/botvel",
-    "description": "Create Chatbots, Chat commands and more with Laravel ",
+    "description": "This is my package botvel",
     "keywords": [
         "thettler",
         "laravel",
@@ -17,10 +17,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.9.2",
+        "spatie/laravel-package-tools": "^1.13.0",
         "illuminate/contracts": "^9.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.0",
         "nunomaduro/collision": "^6.0",
         "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
@@ -45,7 +46,8 @@
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage"
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
     },
     "config": {
         "sort-packages": true,
