@@ -1,6 +1,6 @@
 <?php
 
-namespace Thettler\Botvel\Commands;
+namespace Thettler\Botvel\ArtisanCommands;
 
 use Illuminate\Console\Command;
 
