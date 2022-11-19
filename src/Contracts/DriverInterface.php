@@ -6,5 +6,5 @@ interface DriverInterface
 {
     public static function key(): string;
 
-    public static function commandConfigurator(mixed ... $props): ConfiguratorInterface;
+    public static function commandConfigurator(mixed ...$props): ConfiguratorInterface;
 }

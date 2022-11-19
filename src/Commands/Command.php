@@ -31,6 +31,4 @@ class Command
     {
         return $this->driverData[$driver];
     }
-
-
 }

@@ -4,7 +4,7 @@ use Thettler\Botvel\Facades\Botvel;
 
 it('can call driver migrators', function () {
     Botvel::fake();
-    Botvel::command('test', fn() => '');
+    Botvel::command('test', fn () => '');
 
     /** @var \Thettler\Botvel\BotvelMigrator $migrator */
     $migrator = app(\Thettler\Botvel\BotvelMigrator::class);
@@ -13,7 +13,6 @@ it('can call driver migrators', function () {
     expect($migrator->isCommandMigrated('test', \Thettler\Botvel\Fakes\FakeDriver::key()))
         ->toBeTrue();
 });
-
 
 it('asdas', function () {
     dd(combinations(['A', 'B', 'C', 'D'], 2));
@@ -30,7 +29,6 @@ function subcombi(array $arr, int $arr_size, int $count): array
 
         return $combi_arr;
     }
-
 
     for ($i = $count - 1; $i < $arr_size; $i = $i + 1) {
         $highest_index_elem_arr = [$i => $arr[$i]];

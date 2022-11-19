@@ -11,6 +11,7 @@ class FakeConfigurator implements ConfiguratorInterface
     public function testData(mixed $data): static
     {
         $this->data = $data;
+
         return $this;
     }
 

@@ -14,7 +14,6 @@ class BotvelRegistrar
 
     public function registerCommands()
     {
-
     }
 
     public function getCommands()
@@ -24,12 +23,13 @@ class BotvelRegistrar
 
     public function getCommand(string $identifier): Command|null
     {
-        return $this->commands->first(fn(Command $command) => $command->identifier === $identifier);
+        return $this->commands->first(fn (Command $command) => $command->identifier === $identifier);
     }
 
     public function addCommand(Command $command): static
     {
         $this->commands[] = $command;
+
         return $this;
     }
 }

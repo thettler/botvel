@@ -3,7 +3,6 @@
 namespace Thettler\Botvel\Fakes;
 
 use Thettler\Botvel\Contracts\ConfiguratorInterface;
-use Thettler\Botvel\Contracts\DriverInterface;
 use Thettler\Botvel\Contracts\DriverWithMigrationInterface;
 use Thettler\Botvel\Contracts\MigratorInterface;
 

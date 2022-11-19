@@ -7,9 +7,9 @@ use Thettler\Botvel\Fakes\FakeConfigurator;
 
 it('can manually add commands via Facade', function () {
     Botvel::fake();
-    $handler = fn() => 'test';
+    $handler = fn () => 'test';
     Botvel::command('test', $handler)
-        ->configure('fake', fn(FakeConfigurator $config) => $config->testData('Some Input'));
+        ->configure('fake', fn (FakeConfigurator $config) => $config->testData('Some Input'));
 
     expect(app(BotvelRegistrar::class)->getCommand('test'))
         ->toBeInstanceOf(Command::class)

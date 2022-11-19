@@ -2,10 +2,8 @@
 
 namespace Thettler\Botvel;
 
-use Illuminate\Support\Arr;
 use Thettler\Botvel\Commands\Command;
 use Thettler\Botvel\Contracts\DriverWithMigrationInterface;
-use Thettler\Botvel\Contracts\MigratorInterface;
 
 class BotvelMigrator
 {
@@ -24,8 +22,8 @@ class BotvelMigrator
     public function migrate()
     {
         $drivers = collect(\Thettler\Botvel\Facades\Botvel::drivers())
-            ->filter(fn(string $diver) => in_array(DriverWithMigrationInterface::class, class_implements($diver)))
-            ->map(fn(string $diver) => app($diver));
+            ->filter(fn (string $diver) => in_array(DriverWithMigrationInterface::class, class_implements($diver)))
+            ->map(fn (string $diver) => app($diver));
 
         if ($drivers->isEmpty()) {
             return;
@@ -43,11 +41,11 @@ class BotvelMigrator
     {
         $migratedCommands = $this->migratedCommands[$drivers] ?? false;
 
-        if (!$migratedCommands) {
+        if (! $migratedCommands) {
             return false;
         }
 
-        $commands = array_filter($migratedCommands, fn(Command $command) => $command->identifier === $identifier);
+        $commands = array_filter($migratedCommands, fn (Command $command) => $command->identifier === $identifier);
 
         if (empty($commands)) {
             return false;

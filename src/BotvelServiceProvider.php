@@ -10,7 +10,7 @@ class BotvelServiceProvider extends PackageServiceProvider
 {
     public function packageRegistered()
     {
-        $this->app->singleton(BotvelRegistrar::class, fn() => new BotvelRegistrar());
+        $this->app->singleton(BotvelRegistrar::class, fn () => new BotvelRegistrar());
     }
 
     public function configurePackage(Package $package): void
