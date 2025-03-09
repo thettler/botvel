@@ -8,11 +8,12 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('botvel_table', function (Blueprint $table) {
+        Schema::create('botvel_migrated_commands', function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
+            $table->string('key')->index();
+            $table->string('bot');
+            $table->json('platforms');
+            $table->dateTime('last_migrate_at');
             $table->timestamps();
         });
     }

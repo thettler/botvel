@@ -10,7 +10,7 @@ class BotvelServiceProvider extends PackageServiceProvider
 {
     public function packageRegistered()
     {
-        $this->app->singleton(BotvelRegistrar::class, fn() => new BotvelRegistrar());
+        $this->app->singleton(Botvel::class, fn() => new Botvel(new (config('botvel.store'))));
     }
 
     public function configurePackage(Package $package): void
@@ -23,8 +23,6 @@ class BotvelServiceProvider extends PackageServiceProvider
         $package
             ->name('botvel')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_botvel_table')
-            ->hasCommand(BotvelCommand::class);
+            ->hasMigration('create_botvel_table');
     }
 }

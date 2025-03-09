@@ -3,49 +3,41 @@
 namespace Thettler\Botvel;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Thettler\Botvel\Commands\Command;
 use Thettler\Botvel\Contracts\DriverInterface;
+use Thettler\Botvel\Contracts\StoreInterface;
 use Thettler\Botvel\Fakes\FakeDriver;
 
 class Botvel
 {
     public function __construct(
-        protected BotvelRegistrar $registrar
+        protected StoreInterface $store
     ) {
     }
 
-    /**
-     * @param  string  $identifier
-     * @param  class-string |\Closure  $handler
-     * @return Command
-     */
-    public function command(string $identifier, string|\Closure $handler): Command
+    public function command(string $name, ?callable $commandCallback = null): RegisteredBotvelCommand
     {
-        $command = new Command($identifier, $handler);
-        $this->registrar->addCommand($command);
-        return $command;
+        $registeredCommand = new RegisteredBotvelCommand(
+            name: $name,
+            bot: config('botvel.default_bot'),
+        );
+
+        if ($commandCallback) {
+            $registeredCommand = $commandCallback($registeredCommand);
+        }
+
+        $this->store->add($registeredCommand);
+        return $registeredCommand;
     }
 
-    public function drivers(): array
+    public function commands(): Collection
     {
-        return config('botvel.drivers');
+        return $this->store->all();
     }
 
-    public function driver(string $key): DriverInterface
+    public function store(): StoreInterface
     {
-        return new (Arr::first(config('botvel.drivers'), fn(string $driver) => $driver::key() === $key))();
+        return $this->store;
     }
-
-    public function driverKeys(): array
-    {
-        return array_map(fn(string $driver) => $driver::key(), $this->drivers());
-    }
-
-
-    public function fake(): static
-    {
-        config()->set('botvel.drivers', [FakeDriver::class]);
-        return $this;
-    }
-
 }
