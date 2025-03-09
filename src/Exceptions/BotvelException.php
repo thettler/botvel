@@ -2,7 +2,4 @@
 
 namespace Thettler\Botvel\Exceptions;
 
-class BotvelException extends \Exception
-{
-
-}
+class BotvelException extends \Exception {}

@@ -2,19 +2,14 @@
 
 namespace Thettler\Botvel;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Thettler\Botvel\Commands\Command;
-use Thettler\Botvel\Contracts\DriverInterface;
 use Thettler\Botvel\Contracts\StoreInterface;
-use Thettler\Botvel\Fakes\FakeDriver;
 
 class Botvel
 {
     public function __construct(
         protected StoreInterface $store
-    ) {
-    }
+    ) {}
 
     public function command(string $name, ?callable $commandCallback = null): RegisteredBotvelCommand
     {
@@ -28,6 +23,7 @@ class Botvel
         }
 
         $this->store->add($registeredCommand);
+
         return $registeredCommand;
     }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 use Thettler\Botvel\BotvelArgument;
 use Thettler\Botvel\Exceptions\RegisteredCommandValidationException;
 use Thettler\Botvel\Facades\Botvel;
@@ -9,9 +8,9 @@ use Thettler\Botvel\RegisteredBotvelCommand;
 it('can register a basic command without basic config', function () {
     config()->set('botvel.default_bot', 'defaultBot');
 
-    $command = Botvel::command('inspire', fn(RegisteredBotvelCommand $command) => $command
+    $command = Botvel::command('inspire', fn (RegisteredBotvelCommand $command) => $command
         ->description('Some Description')
-        ->action(fn() => '')
+        ->action(fn () => '')
     );
 
     expect(Botvel::commands())
@@ -26,7 +25,7 @@ it('can register a basic command without basic config', function () {
 });
 
 it('can register a basic command with custom key', function () {
-    Botvel::command('inspire', fn(RegisteredBotvelCommand $command) => $command
+    Botvel::command('inspire', fn (RegisteredBotvelCommand $command) => $command
         ->key('custom-key')
     );
 
@@ -36,15 +35,15 @@ it('can register a basic command with custom key', function () {
 });
 
 it('can not register a command with to large description', function () {
-    Botvel::command('inspire', fn(RegisteredBotvelCommand $command) => $command
+    Botvel::command('inspire', fn (RegisteredBotvelCommand $command) => $command
         ->description(\Illuminate\Support\Str::random(101))
     );
 })->expectException(RegisteredCommandValidationException::class);
 
 it('can register a scoped command without basic config', function () {
-    $command = Botvel::command('inspire', fn(RegisteredBotvelCommand $command) => $command
-            ->scopes('discord','custom-scope')
-        );
+    $command = Botvel::command('inspire', fn (RegisteredBotvelCommand $command) => $command
+        ->scopes('discord', 'custom-scope')
+    );
 
     expect(Botvel::store()->find($command->getKey()))
         ->isScoped()->toBeTrue()
@@ -52,9 +51,9 @@ it('can register a scoped command without basic config', function () {
 });
 
 it('can register a global command without basic config', function () {
-    $command = Botvel::command('inspire', fn(RegisteredBotvelCommand $command) => $command
-            ->global()
-        );
+    $command = Botvel::command('inspire', fn (RegisteredBotvelCommand $command) => $command
+        ->global()
+    );
 
     expect(Botvel::store()->find($command->getKey()))
         ->isGlobal()->toBeTrue()
@@ -62,9 +61,9 @@ it('can register a global command without basic config', function () {
 });
 
 it('can register a basic command with specific bot', function () {
-    $command = Botvel::command('inspire', fn(RegisteredBotvelCommand $command) => $command
-            ->bot('customBot')
-        );
+    $command = Botvel::command('inspire', fn (RegisteredBotvelCommand $command) => $command
+        ->bot('customBot')
+    );
 
     expect(Botvel::store()->find($command->getKey()))
         ->getBot()->toBe('customBot');
@@ -74,7 +73,7 @@ it('can register a basic command with arguments', function () {
     $argument = BotvelArgument::make('test');
     $command = Botvel::command(
         'inspire',
-        fn(RegisteredBotvelCommand $command) => $command
+        fn (RegisteredBotvelCommand $command) => $command
             ->arguments($argument)
     );
 
@@ -82,4 +81,3 @@ it('can register a basic command with arguments', function () {
         ->toHaveCount(1)
         ->first()->toBe($argument);
 });
-

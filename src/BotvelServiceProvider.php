@@ -4,13 +4,12 @@ namespace Thettler\Botvel;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Thettler\Botvel\ArtisanCommands\BotvelCommand;
 
 class BotvelServiceProvider extends PackageServiceProvider
 {
     public function packageRegistered()
     {
-        $this->app->singleton(Botvel::class, fn() => new Botvel(new (config('botvel.store'))));
+        $this->app->singleton(Botvel::class, fn () => new Botvel(new (config('botvel.store'))));
     }
 
     public function configurePackage(Package $package): void

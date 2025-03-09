@@ -4,7 +4,6 @@ namespace Thettler\Botvel;
 
 use Thettler\Botvel\Enums\BotvelArgumentType;
 use Thettler\Botvel\Exceptions\BotvelArgumentValidationException;
-use Thettler\Botvel\Exceptions\RegisteredCommandValidationException;
 
 class BotvelArgument
 {
@@ -13,8 +12,7 @@ class BotvelArgument
         protected string $description = '',
         protected BotvelArgumentType $type = BotvelArgumentType::String,
         protected bool $required = false,
-    ) {
-    }
+    ) {}
 
     public static function make(string $name): self
     {
@@ -43,7 +41,7 @@ class BotvelArgument
 
     public function isOptional(): bool
     {
-        return !$this->required;
+        return ! $this->required;
     }
 
     public function description(string $description): self
@@ -53,18 +51,21 @@ class BotvelArgument
         }
 
         $this->description = $description;
+
         return $this;
     }
 
     public function type(BotvelArgumentType $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
     public function required(bool $required = true): self
     {
         $this->required = $required;
+
         return $this;
     }
 }

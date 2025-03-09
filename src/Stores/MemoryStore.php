@@ -8,10 +8,7 @@ use Thettler\Botvel\RegisteredBotvelCommand;
 
 class MemoryStore implements StoreInterface
 {
-    public function __construct(protected Collection $commands = new Collection())
-    {
-    }
-
+    public function __construct(protected Collection $commands = new Collection) {}
 
     public function all(): Collection
     {
@@ -26,12 +23,13 @@ class MemoryStore implements StoreInterface
         }
 
         $this->commands->put($command->getKey(), $command);
+
         return true;
     }
 
-    public function findByName(string $name): RegisteredBotvelCommand|null
+    public function findByName(string $name): ?RegisteredBotvelCommand
     {
-        return $this->commands->first(fn(RegisteredBotvelCommand $command) => $command->getName() === $name);
+        return $this->commands->first(fn (RegisteredBotvelCommand $command) => $command->getName() === $name);
     }
 
     public function createKey(RegisteredBotvelCommand $command): string
@@ -39,7 +37,7 @@ class MemoryStore implements StoreInterface
         return base64_encode($command->getName());
     }
 
-    public function find(string $key): RegisteredBotvelCommand|null
+    public function find(string $key): ?RegisteredBotvelCommand
     {
         return $this->commands[$key] ?? null;
     }

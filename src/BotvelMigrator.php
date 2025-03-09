@@ -2,7 +2,6 @@
 
 namespace Thettler\Botvel;
 
-use Illuminate\Database\Console\Migrations\MigrateCommand;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Thettler\Botvel\Collections\MigratedCommandsCollection;
@@ -10,15 +9,12 @@ use Thettler\Botvel\Models\MigratedCommand;
 
 class BotvelMigrator
 {
-
     protected MigratedCommandsCollection $alreadyMigrated;
 
     /**
      * @param  Collection<RegisteredBotvelCommand>  $commands
      */
-    public function __construct(protected Collection $commands)
-    {
-    }
+    public function __construct(protected Collection $commands) {}
 
     public static function commands(RegisteredBotvelCommand ...$commands): self
     {
@@ -27,12 +23,11 @@ class BotvelMigrator
 
     /**
      * @param  string[]  $keys
-     * @return MigratedCommandsCollection
      */
     public function getMigratedCommands(array $keys = []): MigratedCommandsCollection
     {
         return MigratedCommand::query()
-            ->when(!empty($keys), fn(Builder $builder) => $builder->whereIn('key', $keys))
+            ->when(! empty($keys), fn (Builder $builder) => $builder->whereIn('key', $keys))
             ->get();
     }
 
@@ -60,14 +55,13 @@ class BotvelMigrator
             return $this->createMigration($registeredBotvelCommand, $platform);
         }
 
-
     }
 
     protected function createMigration(
         RegisteredBotvelCommand $registeredBotvelCommand,
     ): MigratedCommand {
 
-       // todo: Call Provider Driver
+        // todo: Call Provider Driver
         $platformsConfig = [
             'discord' => [
                 'scopes' => [
@@ -75,7 +69,7 @@ class BotvelMigrator
                     'guildId' => 'guildId',
                 ],
                 'fingerprint' => $registeredBotvelCommand->getFingerprint('discord'),
-            ]
+            ],
         ];
 
         MigratedCommand::create([
@@ -89,9 +83,7 @@ class BotvelMigrator
     protected function updateMigration(
         MigratedCommand $migratedCommand,
         RegisteredBotvelCommand $registeredBotvelCommand
-    ): MigratedCommand {
-
-    }
+    ): MigratedCommand {}
 
     protected function dirtyCheckCommand(RegisteredBotvelCommand $registeredBotvelCommand): bool
     {
@@ -99,9 +91,9 @@ class BotvelMigrator
             return true;
         }
 
-        return !!$this->alreadyMigrated
+        return (bool) $this->alreadyMigrated
             ->first(
-                fn(MigratedCommand $migratedCommand
+                fn (MigratedCommand $migratedCommand
                 ) => $migratedCommand->fingerprint !== $registeredBotvelCommand->getFingerprint($migratedCommand->platform)
             );
     }
@@ -109,7 +101,7 @@ class BotvelMigrator
     protected function fetchAlreadyMigrate(): void
     {
         $commandKeys = $this->commands
-            ->map(fn(RegisteredBotvelCommand $registeredBotvelCommand) => $registeredBotvelCommand->getKey())
+            ->map(fn (RegisteredBotvelCommand $registeredBotvelCommand) => $registeredBotvelCommand->getKey())
             ->toArray();
 
         $this->alreadyMigrated = $this->getMigratedCommands($commandKeys);

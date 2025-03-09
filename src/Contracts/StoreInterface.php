@@ -13,7 +13,7 @@ interface StoreInterface
 
     public function createKey(RegisteredBotvelCommand $command): string;
 
-    public function find(string $key): RegisteredBotvelCommand|null;
+    public function find(string $key): ?RegisteredBotvelCommand;
 
-    public function findByName(string $name): RegisteredBotvelCommand|null;
+    public function findByName(string $name): ?RegisteredBotvelCommand;
 }

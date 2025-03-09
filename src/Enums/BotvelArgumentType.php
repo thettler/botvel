@@ -2,7 +2,7 @@
 
 namespace Thettler\Botvel\Enums;
 
-enum BotvelArgumentType : string
+enum BotvelArgumentType: string
 {
     case String = 'string';
     case Integer = 'integer';

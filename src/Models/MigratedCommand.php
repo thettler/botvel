@@ -9,7 +9,6 @@ class MigratedCommand extends Model
 {
     protected $guarded = [];
 
-
     public function newCollection(array $models = []): MigratedCommandsCollection
     {
         return new MigratedCommandsCollection($models);

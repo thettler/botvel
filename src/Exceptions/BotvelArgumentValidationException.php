@@ -3,7 +3,6 @@
 namespace Thettler\Botvel\Exceptions;
 
 use Thettler\Botvel\BotvelArgument;
-use Thettler\Botvel\RegisteredBotvelCommand;
 
 class BotvelArgumentValidationException extends BotvelException
 {

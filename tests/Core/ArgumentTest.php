@@ -12,13 +12,12 @@ it('can create a basic Argument', function () {
         ->getType()->toEqual(BotvelArgumentType::String);
 });
 
-
 it('can create a complex Argument', function () {
     expect(
         BotvelArgument::make('test')
-        ->description('Some Description')
-        ->type(BotvelArgumentType::Integer)
-        ->required()
+            ->description('Some Description')
+            ->type(BotvelArgumentType::Integer)
+            ->required()
     )
         ->toBeInstanceOf(BotvelArgument::class)
         ->getName()->toEqual('test')
